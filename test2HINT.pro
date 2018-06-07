@@ -27,11 +27,15 @@ QT += multimedia
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    mp3player.cpp
+    mp3player.cpp \
+    playlistmanager.cpp \
+    librarymanager.cpp
 
 HEADERS += \
         mainwindow.h \
-    mp3player.h
+    mp3player.h \
+    playlistmanager.h \
+    librarymanager.h
 
 FORMS += \
         mainwindow.ui

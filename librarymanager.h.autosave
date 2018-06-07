@@ -1,0 +1,15 @@
+#ifndef LIBRARYMANAGER_H
+#define LIBRARYMANAGER_H
+
+
+class libraryManager
+{
+    //interact with mp3player class and playListManager class
+    //mainly does the following:
+    //manages ALL songs, whether they are in playlist or not
+public:
+    libraryManager();
+
+};
+
+#endif // LIBRARYMANAGER_H
