@@ -20,15 +20,16 @@ void playListManager::add_new_song_to(const QString& playListName, const QString
 }
 
 //save a playlist
-void playListManager::save_this_list(const QString& playListName, const QString& path="")
+void playListManager::save_this_list(const QString& playListName, const QString& path)
 {
     QString filename=playListName;
-    QFile file( filename + playList_extension);
+    QString _path = QDir::currentPath() + QString::fromStdString("/");
+    QFile file( _path + filename + playList_extension);
+    cout << (_path + filename + playList_extension).toStdString() << endl;
     if ( file.open(QIODevice::ReadWrite) )
     {
         QTextStream stream(&file);
-        for(auto i:playListContainer[playListName])
-            //write all them bitches into the file!
+        for(int i=0; i<playListContainer[playListName].size(); i++)
             stream << playListContainer[playListName][i] << endl;
         file.close();
     }
@@ -49,9 +50,9 @@ void playListManager::save_all_playlists()
         if (file.open(QIODevice::ReadWrite))
         {
             QTextStream stream(&file);
-            for(int j=0; j<playListContainer[i].size(); j++)
+            for(int j=0; j<i.value().size(); j++)
             {   //loop through this vector
-                stream << playListContainer[i][j] << endl;
+                stream << i.value()[j] << endl;
             }
             file.close();
         }

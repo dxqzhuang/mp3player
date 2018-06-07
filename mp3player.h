@@ -2,6 +2,7 @@
 #define MP3PLAYER_H
 #include <QMediaPlayer>
 #include <QDir>
+#include <librarymanager.h>
 using namespace std;
 enum MP3_PLAYER_ERRORS{FILE_NOT_FOUND};
 class mp3Player

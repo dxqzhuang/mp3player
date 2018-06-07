@@ -6,6 +6,7 @@
 #include <QFile>
 #include <QTextStream>
 #include <iostream>
+#include <QDir>
 using namespace std;
 
 enum ERRORS{PLAYLIST_NOT_EXIST, BAD_FILE_PATH, UNKNOWN_ERROR};
