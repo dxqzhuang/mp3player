@@ -23,10 +23,14 @@ void playListManager::add_new_song_to(const QString& playListName, const QString
 void playListManager::save_this_list(const QString& playListName, const QString& path)
 {
     QString filename=playListName;
-    QString _path = QDir::currentPath() + QString::fromStdString("/");
+    QDir currentDir = QDir::current();
+    currentDir.cdUp();
+    currentDir.cdUp();
+    currentDir.cdUp();
+    QString _path = currentDir.path() + QString::fromStdString("/");
     QFile file( _path + filename + playList_extension);
     cout << (_path + filename + playList_extension).toStdString() << endl;
-    if ( file.open(QIODevice::ReadWrite) )
+    if (file.open(QIODevice::ReadWrite))
     {
         QTextStream stream(&file);
         for(int i=0; i<playListContainer[playListName].size(); i++)
@@ -34,7 +38,6 @@ void playListManager::save_this_list(const QString& playListName, const QString&
         file.close();
     }
     //else: throw an error here!!
-
 }
 
 //save all playlists

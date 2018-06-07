@@ -42,6 +42,7 @@ class MainWindow : public QMainWindow
         void play_btn_pressed();
         void play_list_item_pressed();
         void create_play_list_pressed();
+        void load_play_list_pressed();
 };
 
 #endif // MAINWINDOW_H

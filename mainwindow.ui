@@ -28,9 +28,9 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>400</y>
+      <y>340</y>
       <width>160</width>
-      <height>100</height>
+      <height>134</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
@@ -44,7 +44,14 @@
      <item>
       <widget class="QPushButton" name="openFileButton">
        <property name="text">
-        <string>Open File</string>
+        <string>Open Mp3 file</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="mainWindow_load_play_list_btn">
+       <property name="text">
+        <string>Load PlayList</string>
        </property>
       </widget>
      </item>
