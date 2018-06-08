@@ -20,47 +20,10 @@ void MainWindow::connectSignalsSlots()
 {
     connect(ui->exitButton, SIGNAL(pressed()), this, SLOT(close()));
     connect(ui->openFileButton,SIGNAL(pressed()), this,SLOT(openInputFile()));
-    connect(ui->saveFileButton,SIGNAL(pressed()), this,SLOT(openSaveFile()));
     connect(ui->mainWindow_play_btn, SIGNAL(pressed()),this,SLOT(play_btn_pressed()));
     connect(ui->mainWindow_create_play_list_btn, SIGNAL(pressed()),this,SLOT(create_play_list_pressed()));
     connect(ui->mainWindow_load_play_list_btn, SIGNAL(pressed()),this,SLOT(load_play_list_pressed()));
 }
-
-
-void MainWindow::readFile(const QString &fileName)
-{
-    char data;
-    QFile input(fileName);
-    input.open(QFile::ReadOnly);
-    fileContents.clear();
-    while(!input.atEnd())
-        if(input.getChar(&data))
-            fileContents += data;
-    input.close();
-    ui->fileContentsDisplay->clear();
-    ui->fileContentsDisplay->append(fileContents);
-}
-
-
-void MainWindow::openSaveFile()
-{
-//    QString fileName = QFileDialog::getSaveFileName(NULL, "Save File","/Users/pjw/Dropbox/CS 3A/2018/Mars" , "*.dat");
-//    if(fileName.isNull())
-//        return;
-//    if (QFileInfo(fileName).suffix().isEmpty())
-//      fileName.append(".dat");
-//    saveFile(fileName);
-}
-
-
-void MainWindow::saveFile(const QString &fileName)
-{
-    QFile output(fileName);
-    output.open(QFile::WriteOnly);
-    output.write(fileContents.toStdString().c_str(), fileContents.size());
-    output.close();
-}
-
 
 void MainWindow::openInputFile()
 {
@@ -83,8 +46,6 @@ void MainWindow::openInputFile()
         ui->mainWindow_song_list->addWidget(btn);
         //put this song into library manager
 
-
-//        ui->m
     }catch(MP3_PLAYER_ERRORS e)
     {
         switch (e) {
