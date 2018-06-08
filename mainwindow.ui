@@ -6,24 +6,41 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>651</width>
-    <height>481</height>
+    <width>650</width>
+    <height>563</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
+   <widget class="QTextBrowser" name="fileContentsDisplay">
+    <property name="geometry">
+     <rect>
+      <x>400</x>
+      <y>20</y>
+      <width>221</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
    <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>310</y>
+      <x>20</x>
+      <y>340</y>
       <width>160</width>
       <height>134</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QPushButton" name="exitButton">
+       <property name="text">
+        <string>Exit</string>
+       </property>
+      </widget>
+     </item>
      <item>
       <widget class="QPushButton" name="openFileButton">
        <property name="text">
@@ -39,9 +56,42 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="exitButton">
+      <widget class="QPushButton" name="saveFileButton">
        <property name="text">
-        <string>Exit</string>
+        <string>Save File</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="verticalLayoutWidget_2">
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>400</y>
+      <width>411</width>
+      <height>80</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <item>
+      <widget class="QLabel" name="fileNameLabel">
+       <property name="font">
+        <font>
+         <pointsize>19</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>File Name Picked:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="fileName">
+       <property name="text">
+        <string/>
        </property>
       </widget>
      </item>
@@ -50,32 +100,32 @@
    <widget class="QPushButton" name="mainWindow_play_btn">
     <property name="geometry">
      <rect>
-      <x>190</x>
-      <y>320</y>
-      <width>131</width>
-      <height>31</height>
+      <x>70</x>
+      <y>200</y>
+      <width>113</width>
+      <height>32</height>
      </rect>
     </property>
     <property name="text">
-     <string>Play</string>
+     <string>play</string>
     </property>
    </widget>
    <widget class="QTextBrowser" name="mainWindow_library_display">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>60</y>
-      <width>631</width>
-      <height>241</height>
+      <x>410</x>
+      <y>100</y>
+      <width>201</width>
+      <height>261</height>
      </rect>
     </property>
    </widget>
    <widget class="QWidget" name="verticalLayoutWidget_3">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>60</y>
-      <width>631</width>
+      <x>430</x>
+      <y>110</y>
+      <width>161</width>
       <height>241</height>
      </rect>
     </property>
@@ -84,47 +134,14 @@
    <widget class="QPushButton" name="mainWindow_create_play_list_btn">
     <property name="geometry">
      <rect>
-      <x>190</x>
-      <y>360</y>
-      <width>131</width>
+      <x>410</x>
+      <y>370</y>
+      <width>141</width>
       <height>32</height>
      </rect>
     </property>
     <property name="text">
-     <string>Create Playlist</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="fileName">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>30</y>
-      <width>611</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QLabel" name="fileNameLabel">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>10</y>
-      <width>181</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>19</pointsize>
-      <weight>75</weight>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="text">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:8pt; font-weight:400;&quot;&gt;File Picked:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>create play list</string>
     </property>
    </widget>
   </widget>
@@ -133,8 +150,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>651</width>
-     <height>17</height>
+     <width>650</width>
+     <height>22</height>
     </rect>
    </property>
   </widget>
