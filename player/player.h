@@ -63,8 +63,6 @@ class QModelIndex;
 class QPushButton;
 class QSlider;
 class QStatusBar;
-//class QVideoProbe;
-//class QVideoWidget;
 class QAudioProbe;
 QT_END_NAMESPACE
 
@@ -102,11 +100,8 @@ private slots:
     void statusChanged(QMediaPlayer::MediaStatus status);
     void stateChanged(QMediaPlayer::State state);
     void bufferingProgress(int progress);
-//    void videoAvailableChanged(bool available);
 
     void displayErrorMessage();
-
-//    void showColorDialog();
 
 private:
     void clearHistogram();
@@ -117,20 +112,17 @@ private:
 
     QMediaPlayer *m_player = nullptr;
     QMediaPlaylist *m_playlist = nullptr;
-//    QVideoWidget *m_videoWidget = nullptr;
     QLabel *m_coverLabel = nullptr;
     QSlider *m_slider = nullptr;
     QLabel *m_labelDuration = nullptr;
-    QPushButton *m_fullScreenButton = nullptr;
+//    QPushButton *m_loopButton = nullptr;
     QPushButton *m_colorButton = nullptr;
     QDialog *m_colorDialog = nullptr;
     QLabel *m_statusLabel = nullptr;
     QStatusBar *m_statusBar = nullptr;
 
     QLabel *m_labelHistogram = nullptr;
-//    HistogramWidget *m_videoHistogram = nullptr;
     HistogramWidget *m_audioHistogram = nullptr;
-//    QVideoProbe *m_videoProbe = nullptr;
     QAudioProbe *m_audioProbe = nullptr;
 
     PlaylistModel *m_playlistModel = nullptr;

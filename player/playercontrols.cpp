@@ -99,6 +99,9 @@ PlayerControls::PlayerControls(QWidget *parent)
 
     connect(m_rateBox, QOverload<int>::of(&QComboBox::activated), this, &PlayerControls::updateRate);
 
+    m_loopButton = new QToolButton(this);
+    m_loopButton->setIcon(style()->standardIcon(QStyle::SP_BrowserReload));
+
     QBoxLayout *layout = new QHBoxLayout;
     layout->setMargin(0);
     layout->addWidget(m_stopButton);
@@ -108,6 +111,7 @@ PlayerControls::PlayerControls(QWidget *parent)
     layout->addWidget(m_muteButton);
     layout->addWidget(m_volumeSlider);
     layout->addWidget(m_rateBox);
+    layout->addWidget(m_loopButton);
     setLayout(layout);
 }
 

@@ -104,6 +104,8 @@ private:
     QAbstractButton *m_muteButton = nullptr;
     QAbstractSlider *m_volumeSlider = nullptr;
     QComboBox *m_rateBox = nullptr;
+    QAbstractButton *m_loopButton = nullptr;
+//    QMediaPlayer::
 };
 
 #endif // PLAYERCONTROLS_H

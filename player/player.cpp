@@ -81,13 +81,10 @@ Player::Player(QWidget *parent)
     connect(m_playlist, &QMediaPlaylist::currentIndexChanged, this, &Player::playlistPositionChanged);
     connect(m_player, &QMediaPlayer::mediaStatusChanged, this, &Player::statusChanged);
     connect(m_player, &QMediaPlayer::bufferStatusChanged, this, &Player::bufferingProgress);
-//    connect(m_player, &QMediaPlayer::videoAvailableChanged, this, &Player::videoAvailableChanged);
     connect(m_player, QOverload<QMediaPlayer::Error>::of(&QMediaPlayer::error), this, &Player::displayErrorMessage);
     connect(m_player, &QMediaPlayer::stateChanged, this, &Player::stateChanged);
 
 //! [2]
-//    m_videoWidget = new VideoWidget(this);
-//    m_player->setVideoOutput(m_videoWidget);
 
     m_playlistModel = new PlaylistModel(this);
     m_playlistModel->setPlaylist(m_playlist);
@@ -107,16 +104,10 @@ Player::Player(QWidget *parent)
 
     m_labelHistogram = new QLabel(this);
     m_labelHistogram->setText("Histogram:");
-//    m_videoHistogram = new HistogramWidget(this);
     m_audioHistogram = new HistogramWidget(this);
     QHBoxLayout *histogramLayout = new QHBoxLayout;
     histogramLayout->addWidget(m_labelHistogram);
-//    histogramLayout->addWidget(m_videoHistogram, 1);
     histogramLayout->addWidget(m_audioHistogram, 2);
-
-//    m_videoProbe = new QVideoProbe(this);
-//    connect(m_videoProbe, &QVideoProbe::videoFrameProbed, m_videoHistogram, &HistogramWidget::processFrame);
-//    m_videoProbe->setSource(m_player);
 
     m_audioProbe = new QAudioProbe(this);
     connect(m_audioProbe, &QAudioProbe::audioBufferProbed, m_audioHistogram, &HistogramWidget::processBuffer);
@@ -139,21 +130,18 @@ Player::Player(QWidget *parent)
     connect(controls, &PlayerControls::changeVolume, m_player, &QMediaPlayer::setVolume);
     connect(controls, &PlayerControls::changeMuting, m_player, &QMediaPlayer::setMuted);
     connect(controls, &PlayerControls::changeRate, m_player, &QMediaPlayer::setPlaybackRate);
-//    connect(controls, &PlayerControls::stop, m_videoWidget, QOverload<>::of(&QVideoWidget::update));
 
     connect(m_player, &QMediaPlayer::stateChanged, controls, &PlayerControls::setState);
     connect(m_player, &QMediaPlayer::volumeChanged, controls, &PlayerControls::setVolume);
     connect(m_player, &QMediaPlayer::mutedChanged, controls, &PlayerControls::setMuted);
 
-    m_fullScreenButton = new QPushButton(tr("FullScreen"), this);
-    m_fullScreenButton->setCheckable(true);
+//    m_loopButton = new QPushButton(tr("Loop"), this);
+//    m_loopButton->setCheckable(true);
 
-    m_colorButton = new QPushButton(tr("Color Options..."), this);
+    m_colorButton = new QPushButton(tr("Color Options"), this);
     m_colorButton->setEnabled(false);
-//    connect(m_colorButton, &QPushButton::clicked, this, &Player::showColorDialog);
 
     QBoxLayout *displayLayout = new QHBoxLayout;
-//    displayLayout->addWidget(m_videoWidget, 2);
     displayLayout->addWidget(m_playlistView);
 
     QBoxLayout *controlLayout = new QHBoxLayout;
@@ -162,7 +150,7 @@ Player::Player(QWidget *parent)
     controlLayout->addStretch(1);
     controlLayout->addWidget(controls);
     controlLayout->addStretch(1);
-    controlLayout->addWidget(m_fullScreenButton);
+//    controlLayout->addWidget(m_loopButton);
     controlLayout->addWidget(m_colorButton);
 
     QBoxLayout *layout = new QVBoxLayout;
@@ -194,7 +182,6 @@ Player::Player(QWidget *parent)
         m_playlistView->setEnabled(false);
         openButton->setEnabled(false);
         m_colorButton->setEnabled(false);
-        m_fullScreenButton->setEnabled(false);
     }
 
     metaDataChanged();
@@ -219,7 +206,7 @@ void Player::open()
         supportedMimeTypes.append("audio/x-m3u"); // MP3 playlists
         fileDialog.setMimeTypeFilters(supportedMimeTypes);
     }
-    fileDialog.setDirectory(QStandardPaths::standardLocations(QStandardPaths::MoviesLocation).value(0, QDir::homePath()));
+    fileDialog.setDirectory(QStandardPaths::standardLocations(QStandardPaths::MusicLocation).value(0, QDir::homePath()));
     if (fileDialog.exec() == QDialog::Accepted)
         addToPlaylist(fileDialog.selectedUrls());
 }
@@ -363,22 +350,6 @@ void Player::bufferingProgress(int progress)
         setStatusInfo(tr("Buffering %1%").arg(progress));
 }
 
-//void Player::videoAvailableChanged(bool available)
-//{
-//    if (!available) {
-////        disconnect(m_fullScreenButton, &QPushButton::clicked, m_videoWidget, &QVideoWidget::setFullScreen);
-////        disconnect(m_videoWidget, &QVideoWidget::fullScreenChanged, m_fullScreenButton, &QPushButton::setChecked);
-////        m_videoWidget->setFullScreen(false);
-//    } else {
-//        connect(m_fullScreenButton, &QPushButton::clicked, m_videoWidget, &QVideoWidget::setFullScreen);
-//        connect(m_videoWidget, &QVideoWidget::fullScreenChanged, m_fullScreenButton, &QPushButton::setChecked);
-
-//        if (m_fullScreenButton->isChecked())
-//            m_videoWidget->setFullScreen(true);
-//    }
-//    m_colorButton->setEnabled(available);
-//}
-
 void Player::setTrackInfo(const QString &info)
 {
     m_trackInfo = info;
@@ -434,6 +405,5 @@ void Player::updateDurationInfo(qint64 currentInfo)
 
 void Player::clearHistogram()
 {
-//    QMetaObject::invokeMethod(m_videoHistogram, "processFrame", Qt::QueuedConnection, Q_ARG(QVideoFrame, QVideoFrame()));
     QMetaObject::invokeMethod(m_audioHistogram, "processBuffer", Qt::QueuedConnection, Q_ARG(QAudioBuffer, QAudioBuffer()));
 }
